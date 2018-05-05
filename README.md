@@ -1,3 +1,3 @@
 # Blockchain 
 
-This is an implementation of a basic blockchain.
+This is an implementation of Satoshi Nakomoto's blockchain protocol.
