@@ -13,7 +13,7 @@ class Blockchain:
     
     def __init__(self):
         self.blockchain = []
-        self.createBlock(proof='1', prevHash='0')
+        self.createBlock(proof=1, prevHash='0')
     
     def createBlock(self, proof, prevHash):
         block = {
@@ -26,7 +26,7 @@ class Blockchain:
         return block
     
     def getPrevBlock(self):
-        self.blockchain[-1]
+        return self.blockchain[-1]
     
     def proofOfWork(self, prevProof):
         newProof = 1
@@ -65,6 +65,21 @@ app = Flask(__name__)  # Easy right :) Thank god for Flask!
 
 # Instantiates Blockchain
 blockchain = Blockchain()
+# def mine_block():
+#     prevBlock = blockchain.getPrevBlock()
+#     prevProof = prevBlock['proof']
+#     proof = blockchain.proofOfWork(prevProof)
+#     prevHash = blockchain.hash(prevBlock)
+#     block = blockchain.createBlock(proof, prevHash)
+#     response = {
+#         'message': 'Congratulations! You have successfully mined a block :)',
+#         'index': block['index'],
+#         'timestamp': block['timestamp'],
+#         'proof': block['proof'],
+#         'previousHash': block['prevHash']
+#     }
+#     return jsonify(response), 200
+# mine_block()
 
 # API calls
 
@@ -85,8 +100,8 @@ def mine_block():
     }
     return jsonify(response), 200
 
-@app.route('/get-chain', methods = ['GET'])
-def getChain():
+@app.route('/get-blockchain', methods = ['GET'])
+def getBlockchain():
     response = {
         'chain': blockchain.blockchain,
         'length': len(blockchain.blockchain)
