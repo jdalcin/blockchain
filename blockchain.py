@@ -84,7 +84,7 @@ blockchain = Blockchain()
 # API calls
 
 
-@app.route('/mine-block', methods=['GET'])
+@app.route('/mine-block', methods=['POST'])
 def mine_block():
     prevBlock = blockchain.getPrevBlock()
     prevProof = prevBlock['proof']
